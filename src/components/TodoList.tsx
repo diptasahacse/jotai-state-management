@@ -36,21 +36,22 @@ const TodoList = () => {
           <div>
             {todo.map((item, index) => (
               <div className=" mb-3 flex gap-2 items-center" key={item.id}>
-                <span>{index+1}</span>
+                <span className={` h-7 rounded-full w-7 flex justify-center items-center ${item.done ? "bg-green-500" :" bg-red-400"}`}>{index+1}</span>
                 <div className=" flex items-center flex-grow gap-2">
                     
                   <input
                     type="checkbox"
                     checked={item.done}
                     onChange={(e) => checkboxHandler(e.target.checked, item.id)}
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500  "
                   ></input>
                   <input
                     onChange={(e) => changeHandler(e.target.value, item.id)}
                     value={item.text}
                     readOnly={item.done}
                     type="text"
-                    className="w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    title={item.done ? "Completed":""}
+                    className={`w-full p-2 text-gray-900 border ${item.done ? "border-green-600 bg-[#83ff0008] cursor-not-allowed": "border-gray-300 focus:border-blue-600"} rounded-lg bg-gray-50 sm:text-xs focus:outline-none focus:ring-0  `}
                   ></input>
                 </div>
                 <button onClick={() => deleteHandler(item.id)}>
